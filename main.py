@@ -1,5 +1,4 @@
 # imports
-from PIL import Image
 from pytesseract import *
 import glob
 
@@ -9,11 +8,11 @@ pytesseract.tesseract_cmd = r'C:\Users\User\AppData\Local\Programs\Tesseract-OCR
 # main 2
 try:                       #0123456789-4321
     for img in glob.iglob(r'ocr\input\*.png'):
-        print(f'\n{img}')
         output = pytesseract.image_to_string(img)
-        print(f'\n{output}')
-        with open(r'ocr\output\test.txt', 'a', encoding='utf-8') as result:
+        print("= = = = = = = = = = = = = = = = = = = = =")
+        print(f'{img[10:]}: {output}')
+        with open(rf'ocr\output\{img[10:-4]}.txt', 'w', encoding='utf-8') as result:
             result.write(output)
-        print(f'\nNEXT')
+    print("= = = = = = = = = = = = = = = = = = = = =")
 except Exception as e:
     print('\n' + e)
